@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_USER: moonshot
+      POSTGRES_PASSWORD: moonshot123
+      POSTGRES_DB: moonshot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://moonshot:moonshot123@postgres:5432/moonshot
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
