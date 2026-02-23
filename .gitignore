@@ -1,0 +1,7 @@
+echo "venv/" >> .gitignore
+echo ".next/" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo ".env" >> .gitignore
+echo "*.dll" >> .gitignore   # catches llvmlite.dll and similar
