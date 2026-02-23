@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+/* ========== MOONSHOT CYBERPUNK 2026 — DESIGN TOKENS ========== */
+:root {
+  --color-void: #000000;
+  --color-neon-cyan: #67e8f9;
+  --color-neon-cyan-dim: #22d3ee;
+  --color-neon-magenta: #c084fc;
+  --color-neon-purple: #a855f7;
+  --color-electric-blue: #3b82f6;
+  --color-neon-pink: #ec4899;
+  --color-hologram: rgba(103, 232, 249, 0.12);
+  --font-display: "Orbitron", "Rajdhani", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    background: var(--color-void);
+    color: var(--color-neon-cyan);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
+
+/* ========== NEON GLOWS ========== */
+.neon-cyan {
+  color: #67e8f9;
+  text-shadow: 0 0 10px #67e8f9, 0 0 20px #22d3ee, 0 0 40px rgba(103, 232, 249, 0.5), 0 0 80px rgba(34, 211, 238, 0.3);
+}
+.neon-magenta {
+  color: #c084fc;
+  text-shadow: 0 0 10px #c084fc, 0 0 20px #a855f7, 0 0 40px rgba(192, 132, 252, 0.5);
+}
+.neon-purple {
+  color: #a855f7;
+  text-shadow: 0 0 10px #a855f7, 0 0 20px #7c3aed, 0 0 40px rgba(168, 85, 247, 0.5);
+}
+.neon-electric {
+  color: #3b82f6;
+  text-shadow: 0 0 10px #3b82f6, 0 0 20px #2563eb, 0 0 40px rgba(59, 130, 246, 0.5);
+}
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(103, 232, 249, 0.4), 0 0 40px rgba(103, 232, 249, 0.2), inset 0 0 20px rgba(103, 232, 249, 0.05);
+}
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+.glow-border-cyan {
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.5);
+}
+.glow-border-magenta {
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
+}
+
+/* ========== GLASSMORPHISM ========== */
+.glass {
+  background: rgba(5, 5, 15, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(103, 232, 249, 0.25);
+}
+.glass-dark {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(103, 232, 249, 0.2);
+}
+.glass-card {
+  background: linear-gradient(135deg, rgba(15, 15, 35, 0.7) 0%, rgba(5, 5, 20, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  box-shadow: 0 0 30px rgba(103, 232, 249, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glass-card-magenta {
+  border-color: rgba(192, 132, 252, 0.3);
+  box-shadow: 0 0 30px rgba(192, 132, 252, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glass-card-purple {
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.08);
+}
+
+/* ========== GLITCH — MOONSHOT LOGO ========== */
+.glitch {
+  position: relative;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ec4899;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  animation: glitch-1 2.5s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 #67e8f9;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  animation: glitch-2 2s infinite linear alternate-reverse;
+}
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(-2px, 2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0); }
+}
+.glitch-sweep {
+  animation: glitch-sweep 4s ease-in-out infinite;
+}
+@keyframes glitch-sweep {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(5deg); }
+}
+
+/* ========== GRADIENT BUTTON ========== */
+.btn-moonshot {
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 35%, #06b6d4 65%, #a855f7 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 40px rgba(103, 232, 249, 0.3), 0 0 80px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.btn-moonshot:hover:not(:disabled) {
+  box-shadow: 0 0 50px rgba(103, 232, 249, 0.5), 0 0 100px rgba(168, 85, 247, 0.3);
+  filter: brightness(1.1);
+}
+.btn-moonshot:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ========== MATRIX RAIN CONTAINER ========== */
+.matrix-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* ========== FLOATING ANIMATION ========== */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+.float-delay-1 { animation-delay: -1s; }
+.float-delay-2 { animation-delay: -2s; }
+.float-delay-3 { animation-delay: -3s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 25, 0.8);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #67e8f9 0%, #a855f7 100%);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7dd3fc 0%, #c084fc 100%);
+}
+
+/* ========== RESULTS PANEL ========== */
+.results-panel {
+  background: linear-gradient(180deg, rgba(5, 5, 20, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+  border: 1px solid rgba(103, 232, 249, 0.3);
+  box-shadow: 0 0 60px rgba(103, 232, 249, 0.15), inset 0 0 40px rgba(103, 232, 249, 0.03);
+}
